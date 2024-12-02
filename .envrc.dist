@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+OP_ACCOUNT=$(op account ls | awk '{ print $3 }')
+
+export OP_ACCOUNT="${OP_ACCOUNT}"
+
+USERNAME=$(op read "op://xxxxxx")
+PASSWORD=$(op read "op://xxxxxx")
+
+export DOMAIN=
+export ADMIN_USER="${USERNAME}"
+export ADMIN_PASSWORD="${PASSWORD}"
+export HASHED_PASSWORD=$(echo "${ADMIN_PASSWORD}" | openssl passwd -apr1 -stdin)
